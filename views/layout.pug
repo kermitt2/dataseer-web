@@ -4,26 +4,26 @@ html
     title DataSeer
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous')
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
-    link(rel='stylesheet' href=baseUrl + 'stylesheets/style.css')
-    link(rel='stylesheet' href=baseUrl + 'stylesheets/tei.css')
+    link(rel='stylesheet' href='../stylesheets/style.css')
+    link(rel='stylesheet' href='../stylesheets/tei.css')
     if document
-      link(rel='stylesheet' href=baseUrl + 'stylesheets/process/'+ document.status + '.css')
+      link(rel='stylesheet' href='../stylesheets/process/'+ document.status + '.css')
     if backoffice
-      link(rel='stylesheet' href=baseUrl + 'stylesheets/backoffice.css')
-    // link(rel='stylesheet' href=baseUrl + 'stylesheets/debug.css')
+      link(rel='stylesheet' href='./stylesheets/backoffice.css')
+    // link(rel='stylesheet' href='./stylesheets/debug.css')
   body
     block content
 
 if document || backoffice
-  script(src=baseUrl + 'javascripts/lib/jquery.js')
+  script(src='../javascripts/lib/jquery.js')
 
 if document
   div(id='document.id' class='data' value=(document._id))
-  div(id='apiUrl' class='data' value=baseUrl + 'api/documents/')
-  script(src=baseUrl + 'javascripts/lib/randomColor.min.js')
-  script(src=baseUrl + 'javascripts/mongoDB.js')
-  script(src=baseUrl + 'javascripts/demo.js')
-  script(src=baseUrl + 'javascripts/process/'+ document.status + '.js')
+  div(id='apiUrl' class='data' value='../api/documents/')
+  script(src='../javascripts/lib/randomColor.min.js')
+  script(src='../javascripts/mongoDB.js')
+  script(src='../javascripts/demo.js')
+  script(src='../javascripts/process/'+ document.status + '.js')
 
 if backoffice
-  script(src=baseUrl + 'javascripts/process/backoffice.js')
+  script(src='./javascripts/process/backoffice.js')
