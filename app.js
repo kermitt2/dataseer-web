@@ -22,6 +22,7 @@ const express = require('express'),
 const indexRouter = require('./routes/index'),
   documentsRouter = require('./routes/api/documents'),
   dataseerMLRouter = require('./routes/api/dataseer-ml'),
+  widgetRouter = require('./routes/api/widget'),
   backOfficeRouter = require('./routes/backoffice'),
   viewsRouter = require('./routes/documents');
 
@@ -71,6 +72,7 @@ app.use(express.static('public'));
 app.use('/', indexRouter);
 app.use('/api/documents', documentsRouter);
 app.use('/api/dataseer-ml', dataseerMLRouter);
+app.use('/api/widget', widgetRouter);
 app.use('/documents', viewsRouter);
 app.use('/backoffice', backOfficeRouter);
 
