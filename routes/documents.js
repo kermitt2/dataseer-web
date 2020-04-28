@@ -47,20 +47,15 @@ router.get('/:id', function(req, res, next) {
   return Documents.findById(req.params.id, function(err, post) {
     if (err) return next(err);
     if (post === null) return res.status(400).send('error 404');
-    let authors =
-        Array.isArray(post.metadata.authors) && post.metadata.authors.length > 0
-          ? post.metadata.authors.join(', ')
-          : '',
-      author_organizations =
-        Array.isArray(post.metadata.author_organizations) && post.metadata.author_organizations.length > 0
-          ? post.metadata.author_organizations.join(' ; ')
-          : '';
+    let author_persons =
+      Array.isArray(post.metadata.author_persons) && post.metadata.author_persons.length > 0
+        ? post.metadata.author_persons.join(', ')
+        : '';
     return res.render(path.join('documents', post.status), {
       'route': 'documents/:id',
       'root': conf.root,
       'document': post,
-      'authors': authors,
-      'author_organizations': author_organizations,
+      'author_persons': author_persons,
       'demo': process.env.DEMO,
       'current_user': req.user
     });

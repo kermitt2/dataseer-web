@@ -60,20 +60,46 @@ block content
 
       div(class='row row-margin')
         div(class='col-12')
-          div(class='key d-inline font-weight-bold') Authors: 
-          div(class='value d-inline') #{document.metadata.authors}
+          div(class='key d-inline font-weight-bold') Metadata :
+      div(class='row row-margin')
+        if document.metadata.manuscriptId !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') Manuscript #: 
+            div(class='value d-inline') #{document.metadata.manuscriptId}
+        if document.metadata.doi !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') DOI: 
+            div(class='value d-inline') #{document.metadata.doi}
+        if document.metadata.pmid !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') PMID: 
+            div(class='value d-inline') #{document.metadata.pmid}
+        if document.metadata.pmcid !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') PMCID: 
+            div(class='value d-inline') #{document.metadata.pmcid}
+      
+      div(class='row row-margin')
         div(class='col-12')
-          div(class='key d-inline font-weight-bold') Title: 
+          div(class='key d-inline font-weight-bold') Article Title : 
           div(class='value d-inline') #{document.metadata.articleTitle}
         div(class='col-12')
-          div(class='key d-inline font-weight-bold') Manuscript #: 
-          div(class='value d-inline') #{document.metadata.manuscriptId}
+          div(class='key d-inline font-weight-bold') Journal : 
+          div(class='value d-inline') #{document.metadata.journal}
+
+      div(class='row row-margin')
         div(class='col-12')
-          div(class='key d-inline font-weight-bold') Submitting Author : 
-          div(class='value d-inline') #{document.metadata.submittingAuthor}
+          div(class='key d-inline font-weight-bold') Authors : 
+          div(class='value d-inline') #{author_persons}
+
+      div(class='row row-margin')
         div(class='col-12')
-          div(class='key d-inline font-weight-bold') Submitting Author email : 
-          div(class='value d-inline') #{document.metadata.submittingAuthoremail}
+          div(class='key d-inline font-weight-bold') Institutions : 
+          if document.metadata.author_organizations.length > 0
+            each val, index in document.metadata.author_organizations
+              div(class='value d-block') #{val}
+          else
+              div(class='value d-inline') Not Found
 
       div(class='row')
         div(class='col-12')
