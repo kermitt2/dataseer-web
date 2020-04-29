@@ -83,9 +83,14 @@ block content
         div(class='col-12')
           div(class='key d-inline font-weight-bold') Article Title : 
           div(class='value d-inline') #{document.metadata.articleTitle}
-        div(class='col-12')
-          div(class='key d-inline font-weight-bold') Journal : 
-          div(class='value d-inline') #{document.metadata.journal}
+        if document.metadata.journal !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') Journal : 
+            div(class='value d-inline') #{document.metadata.journal}
+        if document.metadata.publisher !== ""
+          div(class='col-12')
+            div(class='key d-inline font-weight-bold') Publisher : 
+            div(class='value d-inline') #{document.metadata.publisher}
 
       div(class='row row-margin')
         div(class='col-12')
