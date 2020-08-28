@@ -21,11 +21,11 @@
           'saved': 'saved',
           'valid': 'valid'
         },
-      defaultDataType = Object.keys(dataTypes).sort(function(a, b) {
-        if (metadata[a].count < metadata[b].count) return 1;
-        else if (metadata[a].count > metadata[b].count) return -1;
-        else return 0;
-      })[0],
+        defaultDataType = Object.keys(dataTypes).sort(function(a, b) {
+          if (metadata[a].count < metadata[b].count) return 1;
+          else if (metadata[a].count > metadata[b].count) return -1;
+          else return 0;
+        })[0],
         defaultDataset = {
           'status': _status.modified,
           'id': '',
@@ -111,8 +111,8 @@
             if (typeof dataset['dataset.' + keys[i]] !== 'undefined')
               currentDocument.datasets.current[dataset['dataset.id']][keys[i]] = dataset['dataset.' + keys[i]];
           }
-          if (currentDocument.datasets.current[dataset['dataset.id']].name === '')
-            currentDocument.datasets.current[dataset['dataset.id']].name = dataset['dataset.id'];
+          // if (currentDocument.datasets.current[dataset['dataset.id']].name === '')
+          //   currentDocument.datasets.current[dataset['dataset.id']].name = dataset['dataset.id'];
           currentDocument.datasets.current[dataset['dataset.id']].status = status;
           datasetsList.datasets.statusOf(
             dataset['dataset.id'],
@@ -201,6 +201,12 @@
             ) {
               $('#datasets-error-modal-label').html('Final validation');
               $('#datasets-error-modal-body').html('Please, add at least one dataset before validate');
+              $('#datasets-error-modal-btn').click();
+            } else if (dataset['dataset.name'] === '') {
+              $('#datasets-error-modal-label').html('Final validation');
+              $('#datasets-error-modal-body').html(
+                'To validate, please provide a name for this dataset (' + currentId + ')'
+              );
               $('#datasets-error-modal-btn').click();
             } else if (dataset['dataset.DOI'] === '' && dataset['dataset.comments'] === '') {
               $('#datasets-error-modal-label').html('Final validation');
