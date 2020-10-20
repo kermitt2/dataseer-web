@@ -1,6 +1,6 @@
 (function($) {
   // Get the current Object
-  return MongoDB.getCurrentDocument(function(currentDocument) {
+  return MongoDB.getCurrentDocument(undefined, function(currentDocument) {
     // On metadata_validation click
     $('#metadata_validation').click(function() {
       currentDocument.status = MongoDB.getNextStatus(currentDocument);

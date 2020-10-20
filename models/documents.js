@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 let DocumentsSchema = new mongoose.Schema({
   '_id': String,
+  'pdf': Object,
   'modifiedBy': Object,
   'organisation': String,
   'metadata': Object,

@@ -33,7 +33,13 @@ block content
             each document, index in documents
               div(class='row' style='margin-right:10px; margin-left:10px;' data='true')
                 div(class='col-1')
-                  a.document-link(href=root + 'documents/' + document._id) #{formatUrl(document._id)}
+                  div(class="hidden") #{document.metadata.manuscriptId} #{document.metadata.doi} #{document.metadata.pmid}
+                  if (typeof document.metadata.manuscriptId !== "undefined" && document.metadata.manuscriptId !== "")
+                    a.document-link(href=root + 'documents/' + document._id) #{document.metadata.manuscriptId}
+                  else if (typeof document.pdf !== "undefined" && typeof document.pdf.filename !== "undefined" && document.pdf.filename !== "")
+                    a.document-link(href=root + 'documents/' + document._id) #{document.pdf.filename}
+                  else
+                    a.document-link(href=root + 'documents/' + document._id) #{formatUrl(document._id)}
                 div(class='col-1') #{formatDate(document.uploaded_at)}
                 if document.status === 'metadata'
                   div(class='col-2') Metadata validation

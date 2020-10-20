@@ -4,7 +4,7 @@
 (function($) {
   let currentDocument;
   // Get the current Object
-  return MongoDB.getCurrentDocument(function(doc) {
+  return MongoDB.getCurrentDocument(undefined, function(doc) {
     dataseerML.jsonDataTypes(function(err, data) {
       if (err) return alert('Error : Datatypes unavailable, dataseer-ml service does not respond');
       currentDocument = doc;
@@ -21,11 +21,11 @@
           'saved': 'saved',
           'valid': 'valid'
         },
-      defaultDataType = Object.keys(dataTypes).sort(function(a, b) {
-        if (metadata[a].count < metadata[b].count) return 1;
-        else if (metadata[a].count > metadata[b].count) return -1;
-        else return 0;
-      })[0],
+        defaultDataType = Object.keys(dataTypes).sort(function(a, b) {
+          if (metadata[a].count < metadata[b].count) return 1;
+          else if (metadata[a].count > metadata[b].count) return -1;
+          else return 0;
+        })[0],
         defaultDataset = {
           'status': _status.modified,
           'id': '',

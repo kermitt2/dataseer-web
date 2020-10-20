@@ -15,12 +15,12 @@
   let filter = function() {
     // Declare variables
     let input = $(this),
-      filter = input.val().toLowerCase();
+      searchedValue = input.val().toLowerCase();
     $('.list .row[data]').map(function() {
       let row = $(this),
         txt = row.attr('data');
       if (txt.length) {
-        if (txt.toLowerCase().indexOf(filter) > -1) {
+        if (txt.toLowerCase().indexOf(searchedValue) > -1) {
           row.removeClass('hidden');
         } else {
           row.addClass('hidden');

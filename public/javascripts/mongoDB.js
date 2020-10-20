@@ -5,9 +5,9 @@
 // API Interface Object
 const MongoDB = {
   // Get the current object
-  'getCurrentDocument': function(done) {
+  'getCurrentDocument': function(opts = {}, done) {
     let currentId = jQuery(document.getElementById('document.id')).attr('value');
-    jQuery.get('../api/documents/' + currentId, function(data) {
+    jQuery.get('../api/documents/' + currentId + (typeof opts.pdf !== 'undefined' ? '?pdf=true' : ''), function(data) {
       return done(data);
     });
   },
@@ -18,6 +18,8 @@ const MongoDB = {
       if (typeof doc.modifiedBy[user.role] === 'undefined') doc.modifiedBy[user.role] = {};
       doc.modifiedBy[user.role][user.id] = user.username;
     }
+    let copy = Object.assign({}, doc);
+    copy.pdf.data = undefined;
     jQuery.ajax({
       'type': 'PUT',
       'contentType': 'application/json; charset=utf-8',
@@ -25,7 +27,7 @@ const MongoDB = {
         'X-HTTP-Method-Override': 'PUT'
       },
       'url': '../api/documents/' + doc._id,
-      'data': JSON.stringify(doc),
+      'data': JSON.stringify(copy),
       'success': function(data) {
         return done(null, data);
       },
